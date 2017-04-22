@@ -8,7 +8,22 @@ const add = (a, b, cb) => {
     }, 500);
 };
 
-add(4, 5, (err, result) => {
-    if (err) return console.log(err + '');
-    console.log('RESULT', result);
-});
+const mul = (a, b, cb) => {
+    setTimeout(() => {
+        if (typeof a !== 'number' || typeof b !== 'number') 
+        return cb(new Error('THAM SO PHAI CO KIEU NUMBER'));
+        cb(undefined, a * b);
+    }, 500);
+};
+
+const div = (a, b, cb) => {
+    setTimeout(() => {
+        if (typeof a !== 'number' || typeof b !== 'number') 
+        return cb(new Error('THAM SO PHAI CO KIEU NUMBER'));
+        if (b === 0) 
+        return cb(new Error('THAM SO PHAI CO KIEU NUMBER'));
+        cb(undefined, a / b);
+    }, 500);
+};
+
+module.exports = { add, mul, div };
