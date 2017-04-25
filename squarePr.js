@@ -8,11 +8,16 @@ function getSquare(a, b, h) {
 }
 
 const getSquareAsync = async (a, b, h) => { // eslint-disable-line
-    const ab = await addPromise(a, b);
-    const abh = await mulPromise(ab, h);
-    const square = await divPromise(abh, 2);
-    return square;
+    try {
+        const ab = await addPromise(a, b);
+        const abh = await mulPromise(ab, h);
+        const square = await divPromise(abh, 2);
+        return Promise.resolve(square);
+    } catch (err) {
+        return Promise.reject(err);
+    }
 };
 
-getSquareAsync(3, 4, 5)
-.then(a => console.log(a));
+getSquareAsync(3, 4, '5')
+.then(a => console.log(a))
+.catch(err => console.log(err));
